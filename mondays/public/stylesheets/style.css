@@ -1,0 +1,415 @@
+body {
+    width: 100%;
+    height: 100%;
+    margin: 0 auto;
+    background-color: #f4f4f4;
+}
+
+#site{
+    width: 100%;
+}
+
+.news{
+    background-color: #d2e2af;
+}
+
+.cover {
+    width: 70%;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.journals {
+    flex: 1 0 340px;
+    max-width: 500px;
+}
+
+.header-fix{
+    height: 90px;
+    width: 100%;
+    position: fixed;
+    background-color: #d1b38f;
+    opacity: 0.9;
+
+}
+
+.header{
+    height: 90px;
+    width: 100%;
+    background-color: #d1b38f;
+    opacity: 0.9;
+}
+
+.header::after {
+    display: block;
+    content: '';
+    height: 0;
+    clear: both;
+}
+
+.title-main{
+    width: 100%;
+    background-image: url('/images/fon.jpg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center center;
+    height: 900px;
+    background-size: cover;
+}
+
+.title-order{
+    width: 100%;
+    background-image: url('/images/people.jpg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center center;
+    background-size: cover;
+    height: 900px;
+}
+
+.title-log{
+    width: 100%;
+    background-image: url('/images/juices.jpg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center center;
+    background-size: cover;
+    height: 900px;
+}
+
+.about-us {
+    width: 100%;
+    background-image: url('/images/capuchino.jpg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center center;
+    background-size: cover;
+    height: 900px;
+}
+
+.details{
+    background-color: #f4f4f4;
+}
+
+.details h3{
+    margin: 0;
+}
+
+.address_phone{
+    display: flex;
+    margin-top: 3%;
+}
+
+.address_phone ul{
+    padding: 10px;
+    width: 100%;
+}
+
+.address_phone li{
+    padding-left: 8%;
+    color: #e2dfcf;
+    text-shadow: black 0 0 8px;
+/*color: black;*/
+}
+
+.header ul, .header-fix ul {
+    display: flex;
+    justify-content: space-around;
+    list-style-type: none;
+    text-align: center;
+    font-weight: bold;
+    align-items: center;
+    height: 100%;
+    margin: 0;
+}
+
+li {
+    display: inline-block;
+    font-size: 20px;
+    font-family: 'Mogra', cursive;
+}
+
+.header-fix a, .header a {
+    color: black;
+    text-decoration: none;
+    font-family: 'Lobster', cursive;
+    font-size: 25px;
+}
+
+blockquote h2 {
+    padding-top: 10px;
+    margin: 0;
+    text-transform: uppercase;
+    font-family: 'Mogra', cursive;
+    font-size: 40px;
+    text-align: center;
+}
+
+.mondays_info h3, .news h3{
+    font-family: 'Mogra', cursive;
+    font-size: 20px;
+    margin: 0;
+    text-align: center;
+    padding: 0;
+}
+
+.mondays_info h3, .mondays_info p, .mondays_gallery{
+    color: #ffce37;
+    text-align: left;
+    padding-left: 5%;
+}
+
+.mondays_info h3{
+    font-family: 'Pattaya', cursive;
+    font-size: 40px;
+    padding-top: 2%;
+    padding-bottom: 2%;
+}
+
+.mondays_info p{
+    font-family: 'Pattaya', cursive;
+    font-size: 20px;
+    width: 30%;
+}
+
+.mondays_gallery a{
+    font-family: 'Lobster', cursive;
+    font-size: 30px;
+    color: #e2dfcf;
+    text-shadow: black 0 0 8px;
+    margin-top: 10px;
+}
+
+.mondays_gallery a:hover{
+    color: #ffce37;
+}
+
+h1{
+    font-family: 'Pattaya', sans-serif;
+    font-size: 40px;
+    color: white;
+    font-weight: bold;
+    margin: 0;
+}
+
+.news blockquote{
+    margin: 0;
+    border: none;
+}
+
+blockquote > p{
+    font-family: 'Josefin Sans', sans-serif;
+    margin-left: 100px;
+    font-size: 15px;
+    padding: 25px;
+}
+
+.news img{
+    width: 50%;
+    padding-bottom: 10px;
+    display: block;
+    margin: 0 auto;
+}
+
+p{
+margin: 0;
+}
+/*
+.journals{
+display: inline-flex;
+flex-wrap: wrap;
+width: 40%;
+margin-right: 5%;
+}*/
+
+.journals p{
+    margin: 0;
+    /*font-family: 'Josefin Sans', sans-serif;
+    font-family: 'PT Serif', serif;*/
+    font-family: 'Lobster', cursive;
+    font-size: 30px;
+    padding: 15px 0;
+    text-align: center;
+}
+
+h5{
+    font-size: 13px;
+    margin: 0;
+    font-family: 'Lobster', cursive;
+    text-align: center;
+    padding: 5px;
+}
+
+.footer {
+    height: 100%;
+    width: 100%;
+    background-color: #d1b38f;
+    opacity: 0.9;
+}
+
+
+.address p, .work p, .phone p{
+    font-size: 20px;
+    /*font-family: 'Poppins', cursive;*/
+    font-family: 'Lobster', cursive;
+    display: block;
+    margin-left: 70%;
+    padding-top: 10px;
+    width: 30%;
+}
+
+.address a > img{
+    float: left;
+    width: 140px;
+    height: 140px;
+    margin-left: 40px;
+}
+
+/*.form_avtor, .form_log{
+    display: inline-flex;
+    margin-left: 20%;
+
+    margin-top: 5%;
+}*/
+
+.form_log {
+    position: fixed;
+    padding: 35px;
+    margin-left: 2%;
+    top: 40%; left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+
+.form_order{
+    position: fixed;
+    padding: 50px;
+    margin-left: 11%;
+    top: 50%; left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+
+.form_log label, .form_order label{
+    font-size: 20px;
+    display: inline-block;
+    font-family: 'Mogra', cursive;
+    font-weight: bold;
+    color: black;
+    text-shadow: #e2dfcf 0 0 8px;
+}
+
+input:focus{
+    border-color: saddlebrown;
+    box-shadow: 0 0 5px saddlebrown;
+}
+
+input{
+    padding: 10px;
+    transition: 0.25s;
+    height: 7px;
+}
+
+.form_log button, .form_order button{
+    width: 100%;
+    height: 40px;
+    text-transform: uppercase;
+    outline: none;
+    background-color: #fafafa;
+    font-family: 'Mogra', cursive;
+    font-weight: bold;
+    font-size: 13px;
+}
+
+[type="submit"]:hover{
+    background-color: chocolate;
+    color: #fafafa;
+}
+
+[type="submit"]:active{
+    background-color: chocolate;
+    color: #fafafa;
+}
+
+[type="submit"]{
+    border: solid chocolate 2px;
+}
+
+.map{
+    overflow:hidden;
+    padding-bottom:56.25%;
+    position:relative;
+    height:0;
+
+}
+.map iframe{
+    left:0;
+    top:0;
+    height:100%;
+    width:100%;
+    position:absolute;
+}
+/*
+.map iframe{
+   margin: 0 auto;
+   display: flex;
+    width: 90%;
+}*/
+.details{
+    margin: 0 auto;
+    width: 100%;
+    background-color: #d2e2af;
+}
+
+.detail_img{
+    width: 70%;
+    height: 100%;
+    margin: 0 auto;
+}
+
+.details h3, .gallery h1{
+    font-family: 'Lobster', cursive;
+    font-size: 30px;
+    text-align: center;
+    padding-top: 10px;
+}
+
+.detail_img h5{
+    font-family: 'Lobster', cursive;
+    font-size: 20px;
+    text-align: center;
+}
+
+.detail_img p{
+    text-align: center;
+}
+
+.detail_img p > img{
+    width: 50%;
+    border-radius: 5%;
+}
+
+.gallery{
+    width: 100%;
+    margin: auto;
+    display: inline-block;
+    background-color: #d2e2af;
+}
+
+.gallery img{
+    margin: 13px;
+    border: 3px solid green;
+    width: 240px;
+    height: 280px;
+}
+
+.gallery img:hover {
+    border: 5px solid #b0e278;;
+}
+
+
+

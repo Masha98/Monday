@@ -1,0 +1,55 @@
+<div id="site">
+    <div class="header-fix">
+        <ul>
+            <li><a href="/">Головна</a></li>
+            <li><a href="/about">Про нас</a></li>
+            <li><a href="/order">Онлайн-замовлення</a></li>
+            <li><a href="/menu/Mondays%20menu.pdf">Меню</a></li>
+            <li><a href="/login">Зареєструватися</a></li>
+        </ul>
+    </div>
+
+    <div class="title-main">
+        <div class="center">
+            <!--<h1>Здорова їжа для чудових людей.</h1>-->
+        </div>
+    </div>
+
+    <div class="news">
+
+            <blockquote>
+                <h2>Mondays</h2>
+                <h3>cafe & store</h3>
+            </blockquote>
+            <div class="cover">
+                {{#each news}}
+                    <div class="journals">
+                        <p><a href="detail/{{id}}">{{title}}</p>
+                        <img src="{{url}}" alt="">
+                        <h5>{{date}}</h5>
+                    </div>
+                {{/each}}
+            </div>
+
+    </div>
+
+    <div class="footer">
+        <div class="address">
+            <a href="#"><img src="/images/mondays_web.png"></a>
+            <p>
+                м. Івано-Франківськ
+                вул. Франка 11
+            </p>
+        </div>
+        <div class="work">
+            <p>
+                Працюємо
+                Кожного дня з 9:30 до 20:00
+            </p>
+        </div>
+
+        <div class="phone">
+            <p>тел.(093) 774-06-40</p>
+        </div>
+    </div>
+</div>
