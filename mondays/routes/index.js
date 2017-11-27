@@ -2,6 +2,8 @@ var express = require('express');
 var router = express.Router();
 var newsController = require('../controllers/newsController');
 var controller = new newsController();
+var exportController = require('../controllers/exportController');
+var json2xls = require('json2xls');
 
 router.get('/', function(req, res, next) {
     controller.getNews(function (err, news) {
@@ -34,5 +36,7 @@ router.get('/detail/:id', function(req, res, next) {
         res.render('detail', news);
     });
 });
+
+router.get('/export-db', exportController);
 
 module.exports = router;

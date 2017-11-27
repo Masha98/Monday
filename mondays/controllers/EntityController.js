@@ -4,13 +4,16 @@ function CreateController(){
     };
 
     function getEntity(call) {
-        this.Model.find({}, function (err, entity) {
-            if (err) {
-                call(err, null);
-            } else {
-                call(null, entity);
-            }
-        });
+        this.Model
+            .find()
+            .lean()
+            .exec(function (err, entity) {
+                if (err) {
+                    call(err, null);
+                } else {
+                    call(null, entity);
+                }
+            });
     }
 
     function getEntityById(id, call) {
@@ -24,13 +27,14 @@ function CreateController(){
     }
 
     function addEntity(newEntity, call) {
-        newEntity.save(function(err) {
-            if (err){
-                call(err, null);
-            }else{
-                call((null, newEntity));
-            }
-        });
+        newEntity
+            .save(function(err) {
+                if (err){
+                    call(err, null);
+                }else{
+                    call((null, newEntity));
+                }
+            });
     }
 
     function deleteEntity(id, call) {
