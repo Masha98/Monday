@@ -1,39 +1,75 @@
-var express = require('express');
-var router = express.Router();
-var newsController = require('../controllers/newsController');
-var controller = new newsController();
-var exportController = require('../controllers/exportController');
-var json2xls = require('json2xls');
+const express = require('express');
+const router = express.Router();
+const News = require('../models/news');
+const Dish = require('../models/dish');
+const EntityController = require('../controllers/EntityController');
+const NewsController = new EntityController(News);
+const DishController = new EntityController(Dish);
+const exportController = require('../controllers/exportController');
+const mongoose = require('mongoose');
+const json2xls = require('json2xls');
 
-router.get('/', function(req, res, next) {
-    controller.getNews(function (err, news) {
+router.get('/', (req, res) => {
+    NewsController.getEntity( (err, news) => {
         if(err) res.send(err);
         res.render('index', {
-            news: news
+            news
         });
     });
 });
 
-router.get('/about', function(req, res, next) {
+router.get('/about', (req, res) => {
     res.render('about');
 });
 
-router.get('/gallery', function(req, res, next) {
+router.get('/gallery', (req, res) => {
     res.render('gallery');
 });
 
-router.get('/login', function(req, res, next) {
+router.get('/login', (req, res) => {
     res.render('login');
 });
 
-router.get('/order', function(req, res, next) {
-    res.render('order');
+router.get('/order', (req, res) => {
+    DishController.getEntity((err, dish) => {
+        if(err) res.send(err);
+        res.render('order', { dish } );
+    })
+
 });
 
-router.get('/detail/:id', function(req, res, next) {
-    controller.getNewsById(req.params.id, function (err, news) {
+router.get('/detail/:id', (req, res) => {
+    NewsController.getEntityById(req.params.id, (err, news) => {
         if(err) res.send(err);
         res.render('detail', news);
+    });
+});
+
+router.post('/count-order', (req, res) => {
+    const menuIds = req.body.menu
+        .map((id) => mongoose.Types.ObjectId(id));
+    Dish
+        .aggregate([
+        {
+            $match: {
+                "_id" : {
+                    $in: menuIds
+                }
+            },
+        },
+        {
+            $group: {
+                _id: 'null',
+                total: {
+                    $sum: '$coast'
+                }
+            }
+        },
+        {
+            $project: { _id: false, total: true }
+        }
+    ], (err, result) => {
+        res.json(result);
     });
 });
 

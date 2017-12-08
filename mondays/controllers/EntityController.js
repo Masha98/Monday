@@ -1,9 +1,9 @@
-function CreateController(){
-    var EntityController = function (Model) {
+class EntityController {
+    constructor(Model) {
         this.Model = Model;
-    };
+    }
 
-    function getEntity(call) {
+    getEntity(call) {
         this.Model
             .find()
             .lean()
@@ -16,7 +16,7 @@ function CreateController(){
             });
     }
 
-    function getEntityById(id, call) {
+    getEntityById(id, call) {
         this.Model.findById(id, function(err, entity) {
             if (err) {
                 call(err, null);
@@ -26,7 +26,7 @@ function CreateController(){
         });
     }
 
-    function addEntity(newEntity, call) {
+    addEntity(newEntity, call) {
         newEntity
             .save(function(err) {
                 if (err){
@@ -37,7 +37,7 @@ function CreateController(){
             });
     }
 
-    function deleteEntity(id, call) {
+    deleteEntity(id, call) {
         this.Model.findByIdAndRemove(id, function(err) {
             if (err){
                 call(err);
@@ -47,14 +47,16 @@ function CreateController(){
         });
     }
 
-    function updateEntity(_entity, call) {
+    updateEntity(_entity, call) {
         this.Model.findById(_entity._id, function(err, entity) {
             if (err){
                 call(err, null);
             }else {
-                Object.keys(_entity).forEach(function (key) {
-                    entity[key] = _entity[key];
-                });
+                Object
+                    .keys(_entity)
+                    .forEach(function (key) {
+                        entity[key] = _entity[key];
+                    });
                 entity.save(function (err) {
                     if (err) {
                         call(err, null);
@@ -65,14 +67,6 @@ function CreateController(){
             }
         });
     }
-
-    EntityController.prototype.getEntity = getEntity;
-    EntityController.prototype.getEntityById = getEntityById;
-    EntityController.prototype.addEntity = addEntity;
-    EntityController.prototype.deleteEntity = deleteEntity;
-    EntityController.prototype.updateEntity = updateEntity;
-
-    return EntityController;
 }
 
-module.exports = CreateController;
+module.exports = EntityController;

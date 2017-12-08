@@ -1,6 +1,6 @@
-var Orders = require('../models/orders');
-var entityController = require('../controllers/EntityController')();
-var controller = new entityController(Orders);
+const Orders = require('../models/orders');
+const EntityController = require('../controllers/EntityController');
+const controller = new EntityController(Orders);
 
 module.exports = function (req, res, next) {
     controller.getEntity(function(err, models) {

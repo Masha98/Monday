@@ -1,15 +1,15 @@
-var mongoose = require('mongoose');
-var Schema = mongoose.Schema;
+const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
 
-var ordersSchema = new Schema({
+const ordersSchema = new Schema({
     name: String,
     surname: String,
     last_name: String,
     phone: String,
     address: String,
-    menu: String
+    dishes: [{ type: Schema.Types.ObjectId, ref: 'Dish' }]
 });
 
-var Orders = mongoose.model('Orders', ordersSchema);
+const Orders = mongoose.model('Orders', ordersSchema);
 
 module.exports = Orders;

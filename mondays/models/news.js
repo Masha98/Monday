@@ -1,13 +1,13 @@
-var mongoose = require('mongoose');
-var Schema = mongoose.Schema;
+const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
 
-var newsSchema = new Schema({
+const newsSchema = new Schema({
     title: String,
     details: String,
     url: String,
     date: {type: Date, default: Date.now}
 });
 
-var News = mongoose.model('News', newsSchema);
+const News = mongoose.model('News', newsSchema);
 
 module.exports = News;

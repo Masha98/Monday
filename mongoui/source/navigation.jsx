@@ -14,9 +14,6 @@ const navbarInstance = ()=>{
           <MenuItem eventKey={3.3}>Sseparated link</MenuItem>
         </NavDropdown>
       </Nav>*/}
-      <Nav pullRight>
-        <NavItem eventKey={1} href="localhost:3000/export-db">Export DB</NavItem>
-      </Nav>
     </Navbar.Collapse>
   </Navbar>
 }
