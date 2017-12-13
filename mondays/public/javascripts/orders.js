@@ -12,7 +12,7 @@ document.getElementById('order').addEventListener('click', function (event) {
         last_name: formValues["last_name"].value,
         phone: formValues["phone"].value,
         address: formValues["address"].value,
-        menu: getSelectValues(formValues["menu"])
+        dishes: getSelectValues(formValues["menu"])
     }));
 
     xhr.onreadystatechange = function() {
@@ -31,9 +31,16 @@ document.getElementById('count').addEventListener('click', function (event) {
     event.preventDefault();
     const formValues = document.getElementById('form').elements;
     const xhr = new XMLHttpRequest();
-    xhr.open('POST', '/count-order', true);
+    xhr.open('POST', '/api/orders/all-sum', true);
     xhr.setRequestHeader('Content-Type', 'application/json');
-    xhr.send(JSON.stringify({ menu: getSelectValues(formValues["menu"] )}));
+    xhr.send(JSON.stringify({
+        name: formValues["name"].value,
+        surname: formValues["surname"].value,
+        last_name: formValues["last_name"].value,
+        phone: formValues["phone"].value,
+        address: formValues["address"].value,
+        dishes: getSelectValues(formValues["menu"])
+    }));
 
     xhr.onreadystatechange = function() {
         if (xhr.readyState != 4) return;

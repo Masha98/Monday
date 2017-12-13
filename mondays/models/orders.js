@@ -1,5 +1,7 @@
 const mongoose = require('mongoose');
+const Dish = require('./dish');
 const Schema = mongoose.Schema;
+const MongooseTrigger = require('mongoose-trigger');
 
 const ordersSchema = new Schema({
     name: String,
@@ -9,6 +11,36 @@ const ordersSchema = new Schema({
     address: String,
     dishes: [{ type: Schema.Types.ObjectId, ref: 'Dish' }]
 });
+
+const Events = MongooseTrigger(ordersSchema);
+
+ordersSchema.methods.totalSum = function() {
+    return Dish.aggregate([
+            {
+                $match: {
+                    "_id" : {
+                        $in: this.dishes
+                    }
+                },
+            },
+            {
+                $group: {
+                    _id: 'null',
+                    total: {
+                        $sum: '$coast'
+                    }
+                }
+            },
+            {
+                $project: { _id: false, total: true }
+            }
+        ])
+        .exec();
+};
+
+Events.on('create', data => console.log('[create] new:', data));
+Events.on('update', data => console.log('[update] new:', data));
+Events.on('remove', data => console.log('[remove] new:', data));
 
 const Orders = mongoose.model('Orders', ordersSchema);
 

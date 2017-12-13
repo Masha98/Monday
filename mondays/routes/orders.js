@@ -26,7 +26,7 @@ router.post('/orders',(req, res, next) => {
         last_name: req.body.last_name,
         phone: req.body.phone,
         address: req.body.address,
-        menu: req.body.menu
+        dishes: req.body.dishes
     });
 
     controller.addEntity(newOrders, (err, entity) => {
@@ -50,12 +50,29 @@ router.put('/orders/:id',(req, res, next) => {
         last_name: req.body.last_name,
         phone: req.body.phone,
         address: req.body.address,
-        menu: req.body.menu
+        dishes: req.body.dishes
     };
     controller.updateEntity(orders, (err, _entity) => {
         if(err) res.send(err);
         res.json(_entity);
     });
+});
+
+router.post('/orders/all-sum',(req, res, next) => {
+    const newOrders = Orders({
+        name: req.body.name,
+        surname: req.body.surname,
+        last_name: req.body.last_name,
+        phone: req.body.phone,
+        address: req.body.address,
+        dishes: req.body.dishes
+    });
+
+    newOrders
+        .totalSum()
+        .then((total) => {
+            res.json(total);
+        })
 });
 
 module.exports = router;
