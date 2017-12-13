@@ -9,7 +9,8 @@ const ordersSchema = new Schema({
     last_name: String,
     phone: String,
     address: String,
-    dishes: [{ type: Schema.Types.ObjectId, ref: 'Dish' }]
+    dishes: [{ type: Schema.Types.ObjectId, ref: 'Dish' }],
+    total: Number
 });
 
 const Events = MongooseTrigger(ordersSchema);
@@ -38,10 +39,26 @@ ordersSchema.methods.totalSum = function() {
         .exec();
 };
 
-Events.on('create', data => console.log('[create] new:', data));
+const Orders = mongoose.model('Orders', ordersSchema);
+
+Events.on('create', data => {
+    Orders
+        .findOne({ _id: data._id })
+        .exec()
+        .then((data) => {
+            return data
+                .totalSum()
+                .then((total) => {
+                    data.total = total[0].total;
+                    return data.save().exec();
+                });
+        })
+        .then(console.log);
+});
+
 Events.on('update', data => console.log('[update] new:', data));
 Events.on('remove', data => console.log('[remove] new:', data));
 
-const Orders = mongoose.model('Orders', ordersSchema);
+
 
 module.exports = Orders;

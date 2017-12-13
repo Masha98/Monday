@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
+const MongooseTrigger = require('mongoose-trigger');
 
 const DishSchema = new Schema({
     title: String,
