@@ -10,7 +10,8 @@ const ordersSchema = new Schema({
     phone: String,
     address: String,
     dishes: [{ type: Schema.Types.ObjectId, ref: 'Dish' }],
-    total: Number
+    total: Number,
+    create_date: { type: Date, default: Date.now }
 });
 
 const Events = MongooseTrigger(ordersSchema);
