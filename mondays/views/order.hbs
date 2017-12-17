@@ -1,4 +1,3 @@
-
 <div class="title-order">
     <div class="form_order">
         <form action="#" method="post" id="form">
@@ -35,31 +34,29 @@
                 </tr>
 
                 <tr>
-                    <td></td>
+                    <td>
+                        <button id="count">Розрахувати замовлення</button>
+                    </td>
                     <td>
                         <button id="order">Розмістити замовлення</button>
                     </td>
                 </tr>
-                <tr>
-                    <td></td>
-                    <td>
-                        <button id="count">Розрахувати замовлення</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <input type="date" id="date_gt">
-                    </td>
-                    <td>
-                        <input type="date" id="date_lt">
-                    </td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td>
-                        <button id="date">Експорт за період</button>
-                    </td>
-                </tr>
+                {{#if export}}
+                    <tr>
+                        <td>
+                            <input type="date" id="date_gt">
+                        </td>
+                        <td>
+                            <input type="date" id="date_lt">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>
+                            <button id="date">Експорт за період</button>
+                        </td>
+                    </tr>
+                {{/if}}
             </table>
         </form>
     </div>

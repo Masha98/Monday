@@ -15,6 +15,7 @@ const news = require('./routes/news');
 const orders = require('./routes/orders');
 const users = require('./routes/users');
 const dishes = require('./routes/dishes');
+const types = require('./routes/types');
 
 const app = express();
 
@@ -60,6 +61,7 @@ app.use('/api', news);
 app.use('/api', orders);
 app.use('/api', users);
 app.use('/api', dishes);
+app.use('/api', types);
 
 
 app.use((req, res, next) => {

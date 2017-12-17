@@ -1,11 +1,11 @@
 const express = require('express');
 const router = express.Router();
-const Users = require('../models/users');
+const Type = require('../models/type');
 const entityController = require('../controllers/EntityController');
-const controller = new entityController(Users);
+const controller = new entityController(Type);
 
 
-router.get('/users', (req, res, next) => {
+router.get('/type', (req, res, next) => {
     let limit = 5   ;
     let offset = 0;
     let sort = 'desc';
@@ -22,7 +22,7 @@ router.get('/users', (req, res, next) => {
         sort = req.query.sort;
     }
 
-    Users
+    Type
         .find({})
         .limit(Number(limit))
         .skip(Number(offset))
@@ -33,45 +33,38 @@ router.get('/users', (req, res, next) => {
         });
 });
 
-router.get('/users/:id', (req, res, next) => {
+router.get('/type/:id', (req, res, next) => {
     controller.getEntityById(req.params.id,  (err, entity) => {
         if(err) res.send(err);
         res.json(entity);
     });
 });
 
-router.post('/users', (req, res, next) => {
-    const newUsers = Users({
-        name: req.body.name,
-        surname: req.body.surname,
-        login: req.body.login,
-        password: req.body.password,
+router.post('/type', (req, res, next) => {
+    const newType = Type({
         type: req.body.type,
     });
 
-    controller.addEntity(newUsers,  (err, entity) => {
+    controller.addEntity(newType,  (err, entity) => {
         if(err) res.send(err);
         res.json(entity);
     });
 });
 
-router.delete('/users/:id', (req, res, next) => {
+router.delete('/type/:id', (req, res, next) => {
     controller.deleteEntity(req.params.id,  (err) => {
         if(err) res.send(err);
         res.json('OK!');
     });
 });
 
-router.put('/users/:id', (req, res, next) => {
-    const users = {
+router.put('/type/:id', (req, res, next) => {
+    const dish = {
         _id: req.params.id,
-        name: req.body.name,
-        surname: req.body.surname,
-        login: req.body.login,
-        password: req.body.password,
         type: req.body.type,
     };
-    controller.updateEntity(users,  (err, _entity) => {
+
+    controller.updateEntity(dish,  (err, _entity) => {
         if(err) res.send(err);
         res.json(_entity);
     });

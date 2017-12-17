@@ -1,6 +1,4 @@
 <div class="title-log">
-
-
 <div class="form_log">
     <form action="#" method="post" id="form_log">
         <table>
@@ -19,6 +17,16 @@
             <tr>
                 <td><label for="pass">Пароль</label></td>
                 <td><input type="password" name="Password" id="pass"></td>
+            </tr>
+            <tr>
+                <td><label for="types" class="mes">Роль: </label></td>
+                <td>
+                    <select style="width: 100%" id="types">
+                        {{#each types}}
+                            <option value="{{_id}}">{{type}}</option>
+                        {{/each}}
+                    </select>
+                </td>
             </tr>
             <tr>
                 <td></td>
