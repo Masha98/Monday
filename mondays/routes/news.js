@@ -6,10 +6,31 @@ const controller = new entityController(News);
 
 
 router.get('/news', (req, res, next) => {
-    controller.getEntity( (err, entity) => {
-        if(err) res.send(err);
-        res.json(entity);
-    });
+    let limit = 5   ;
+    let offset = 0;
+    let sort = 'desc';
+
+    if(req.query.limit){
+        limit = req.query.limit;
+    }
+
+    if(req.query.offset){
+        offset = req.query.offset;
+    }
+
+    if(req.query.sort){
+        sort = req.query.sort;
+    }
+
+    News
+        .find({})
+        .limit(Number(limit))
+        .skip(Number(offset))
+        .sort({create_date: sort})
+        .exec()
+        .then((orders) => {
+            res.json(orders);
+        });
 });
 
 router.get('/news/:id', (req, res, next) => {

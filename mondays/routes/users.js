@@ -6,10 +6,31 @@ const controller = new entityController(Users);
 
 
 router.get('/users', (req, res, next) => {
-    controller.getEntity( (err, entity) => {
-        if(err) res.send(err);
-        res.json(entity);
-    });
+    let limit = 5   ;
+    let offset = 0;
+    let sort = 'desc';
+
+    if(req.query.limit){
+        limit = req.query.limit;
+    }
+
+    if(req.query.offset){
+        offset = req.query.offset;
+    }
+
+    if(req.query.sort){
+        sort = req.query.sort;
+    }
+
+    Users
+        .find({})
+        .limit(Number(limit))
+        .skip(Number(offset))
+        .sort({create_date: sort})
+        .exec()
+        .then((orders) => {
+            res.json(orders);
+        });
 });
 
 router.get('/users/:id', (req, res, next) => {

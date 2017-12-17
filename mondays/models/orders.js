@@ -17,7 +17,8 @@ const ordersSchema = new Schema({
 const Events = MongooseTrigger(ordersSchema);
 
 ordersSchema.methods.totalSum = function() {
-    return Dish.aggregate([
+    return Dish
+        .aggregate([
             {
                 $match: {
                     "_id" : {

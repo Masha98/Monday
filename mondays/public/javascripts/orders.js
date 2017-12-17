@@ -47,7 +47,8 @@ document.getElementById('count').addEventListener('click', function (event) {
         if (xhr.status != 200) {
             console.log(xhr.status + ': ' + xhr.statusText);
         } else {
-            console.log(xhr.responseText);
+            const { total } = JSON.parse(xhr.responseText)
+            alert(`Замовлення коштує ${total}грн`);
         }
     };
 });
@@ -56,20 +57,7 @@ document.getElementById('date').addEventListener('click', function (event) {
     event.preventDefault();
     const date_lt = new Date(document.getElementById('date_lt').value).toISOString();
     const date_gt = new Date(document.getElementById('date_gt').value).toISOString();
-    console.log(date_gt, date_lt);
-    const xhr = new XMLHttpRequest();
-    xhr.open('GET', `/export-db/?date_gt=${date_gt}&date_lt=${date_lt}`, true);
-    // xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-    // xhr.send();
     window.open(`/export-db/?date_gt=${date_gt}&date_lt=${date_lt}`);
-    xhr.onreadystatechange = function() {
-        if (xhr.readyState != 4) return;
-        if (xhr.status != 200) {
-            console.log(xhr.status + ': ' + xhr.statusText);
-        } else {
-            console.log(xhr.responseText);
-        }
-    };
 });
 
 function getSelectValues(select) {

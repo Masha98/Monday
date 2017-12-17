@@ -45,34 +45,6 @@ router.get('/detail/:id', (req, res) => {
     });
 });
 
-router.post('/count-order', (req, res) => {
-    const menuIds = req.body.menu
-        .map((id) => mongoose.Types.ObjectId(id));
-    Dish
-        .aggregate([
-        {
-            $match: {
-                "_id" : {
-                    $in: menuIds
-                }
-            },
-        },
-        {
-            $group: {
-                _id: 'null',
-                total: {
-                    $sum: '$coast'
-                }
-            }
-        },
-        {
-            $project: { _id: false, total: true }
-        }
-    ], (err, result) => {
-        res.json(result);
-    });
-});
-
 router.get('/export-db', exportController);
 
 module.exports = router;
