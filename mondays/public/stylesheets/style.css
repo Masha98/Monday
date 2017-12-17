@@ -283,6 +283,16 @@ h5{
     -ms-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
 }
+.form_avtor {
+    position: fixed;
+    padding: 35px;
+    margin-left: 2%;
+    top: 35%;
+    left: 17%;
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
 
 .form_order{
     position: fixed;
