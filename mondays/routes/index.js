@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const News = require('../models/news');
 const Dish = require('../models/dish');
+const Orders = require('../models/orders');
 const Type = require('../models/type');
 const EntityController = require('../controllers/EntityController');
 const NewsController = new EntityController(News);
@@ -92,6 +93,86 @@ router.get('/detail/:id', (req, res) => {
         if(err) res.send(err);
         res.render('detail', { news, isAuth: !req.user, signOut: !!req.user});
     });
+});
+
+router.get('/all-orders', (req, res) => {
+    Orders
+        .aggregate([
+            {
+                $group: {
+                    _id: 'null',
+                    total: {
+                        $sum: '$total'
+                    }
+                }
+            },
+            {
+                $project: { _id: false, total: true }
+            }
+        ])
+        .exec()
+        .then((orders) => {
+            res.json(orders);
+        })
+});
+
+router.get('/all-orders', (req, res) => {
+    Orders
+        .aggregate([
+            {
+                $group: {
+                    _id: 'null',
+                    total: {
+                        $sum: '$total'
+                    }
+                }
+            },
+            {
+                $project: { _id: false, total: true }
+            }
+        ])
+        .exec()
+        .then((orders) => {
+            res.json(orders);
+        })
+});
+
+router.get('/period-of-dishes', ({ query: { date_gt, date_lt }}, res) => {
+    const match = date_gt && date_lt ? { "create_date": { $gt: new Date(date_gt), $lt: new Date(date_lt) }} : {};
+    Orders
+        .aggregate([
+            {
+                $match: match,
+            },
+            {
+                $unwind: "$dishes"
+            },
+            {
+                $lookup: {
+                    from: "dishes",
+                    localField: "dishes",
+                    foreignField: "_id",
+                    as: "dish"
+                }
+            },
+            {
+                $unwind: "$dish"
+            },
+            {
+                $group: {
+                    _id: "$dish._id",
+                    title: { $first: "$dish.title" },
+                    count: { $sum: 1 }
+                }
+            },
+            {
+                $sort : { count: -1 }
+            }
+        ])
+        .exec()
+        .then((orders) => {
+            res.json(orders);
+        })
 });
 
 router.get('/export-db', exportController);

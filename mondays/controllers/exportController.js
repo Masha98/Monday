@@ -18,12 +18,7 @@ module.exports = function (req, res, next) {
         ])
         .exec()
         .then((orders) => {
-            console.log(orders);
-            // res.json({ orders });
             res.xls('DataBase.xlsx', orders)
         })
         .catch(console.log);
-    // controller.getEntity(function(err, models) {
-    //     res.xls('DataBase.xlsx', models)
-    // });
 };
