@@ -3,6 +3,14 @@
         <form action="#" method="post" id="form">
             <table>
                 <tr>
+                    <td>
+                        <button id="zvitStrav">Звіт відомих страв</button>
+                    </td>
+                    <td>
+                        <button id="sumAll">Сумма всіх замовлень</button>
+                    </td>
+                </tr>
+                <tr>
                     <td><label for="name">Ім'я</label></td>
                     <td><input type="text" name="Name" id="name" required><br/></td>
                 </tr>
@@ -27,7 +35,7 @@
                     <td>
                         <select multiple style="width: 100%" id="menu">
                             {{#each dish}}
-                                <option value="{{_id}}">{{title}}</option>
+                                <option value="{{_id}}">{{title}} {{coast}}грн</option>
                             {{/each}}
                         </select>
                     </td>
@@ -51,9 +59,11 @@
                         </td>
                     </tr>
                     <tr>
-                        <td></td>
                         <td>
-                            <button id="date">Експорт за період</button>
+                            <button id="exportOfDishes">Експорт страв за період</button>
+                        </td>
+                        <td>
+                            <button id="date">Експорт замовлень за період</button>
                         </td>
                     </tr>
                 {{/if}}

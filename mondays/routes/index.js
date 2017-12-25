@@ -133,7 +133,7 @@ router.get('/all-orders', (req, res) => {
         ])
         .exec()
         .then((orders) => {
-            res.json(orders);
+            res.json(orders[0]);
         })
 });
 
